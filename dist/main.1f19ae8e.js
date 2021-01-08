@@ -121,9 +121,10 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 var demo = document.querySelector('#demo'); //反引号是可以写数组下标的！
 
 var string = "\u4F60\u597D\uFF0C\u6211\u662F\u4E00\u4E2A\u524D\u7AEF\u65B0\u4EBA\u8BF7\u591A\u6307\u6559";
+console.log(string.length);
 var n = 0; //demo 里面写网页元素。
 
-demo.innerHTML = n; // 使用setTimeout 方法 写一个延时函数。逗号之后是设置时间单位是毫秒！ setTimeout只会发动一次
+demo.innerHTML = string.substring(0, n); // 使用setTimeout 方法 写一个延时函数。逗号之后是设置时间单位是毫秒！ setTimeout只会发动一次
 // 所以满足不到我们，所以使用setInterval 这个是每3秒 发动一次。（但是新人才会这样用）
 
 /*setInterval(() => {
@@ -135,14 +136,13 @@ demo.innerHTML = n; // 使用setTimeout 方法 写一个延时函数。逗号之
 var step = function step() {
   setTimeout(function () {
     n = n + 1;
-    demo.innerHTML = n; // 在这里加一个！
-    // step();
-    // 这是一个限定器。
+    demo.innerHTML = string.substring(0, n);
+    console.log(n);
 
-    if (n < 10) {
+    if (n < string.length) {
       step();
-    } else {}
-  }, 1000);
+    }
+  }, 100);
 };
 
 step(); // 这样的一个缺陷！就是 它的时间不对！为什么不对？因为，它的时间是固定的，所以中间不给你反应的时间，
@@ -175,7 +175,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61907" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63338" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
