@@ -118,35 +118,32 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-var demo = document.querySelector('#demo'); //反引号是可以写数组下标的！
-
-var string = "\u4F60\u597D\uFF0C\u6211\u662F\u4E00\u4E2A\u524D\u7AEF\u65B0\u4EBA\u8BF7\u591A\u6307\u6559";
-console.log(string.length);
-var n = 0; //demo 里面写网页元素。
-
-demo.innerHTML = string.substring(0, n); // 使用setTimeout 方法 写一个延时函数。逗号之后是设置时间单位是毫秒！ setTimeout只会发动一次
-// 所以满足不到我们，所以使用setInterval 这个是每3秒 发动一次。（但是新人才会这样用）
-
-/*setInterval(() => {
-    n = n + 1;
-    demo.innerHTML = n;
-}, 1000);*/
-//高手都是这样用的哦!使用递归！
+var demo = document.querySelector('#demo');
+var string = "\u4F60\u597D\uFF0C\u6211\u662F\u4E00\u4E2A\u524D\u7AEF\u65B0\u4EBA\u8BF7\u591A\u6307\u6559\n\u63A5\u4E0B\u6765\u6211\u8981\u5F00\u59CB\u8868\u6F14\u4E86\uFF01\n\u7ED9\u7F51\u9875\u589E\u52A0\u6837\u5F0F\uFF01\n\u6211\u8981\u52A0\u7684\u6837\u5F0F\u6709\u8FD9\u4E9B\uFF1A\nbody {\n    color:red;\n}\n";
+var string2 = '';
+var n = -1;
 
 var step = function step() {
   setTimeout(function () {
     n = n + 1;
-    demo.innerHTML = string.substring(0, n);
-    console.log(n);
+
+    if (string[n] === '\n') {
+      // 如果 是回车就替换
+      string2 += '<br>';
+    } else {
+      // 如果 不是回车就照搬
+      string2 += string[n];
+    }
+
+    demo.innerHTML = string2;
 
     if (n < string.length) {
       step();
     }
-  }, 100);
+  }, 10);
 };
 
-step(); // 这样的一个缺陷！就是 它的时间不对！为什么不对？因为，它的时间是固定的，所以中间不给你反应的时间，
-// 就直接过去了，那么我们应该怎么做呢？只需要执行完这个函数之后，再执行一次就好。所以！
+step();
 },{}],"C:/Users/高智坤/AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -175,7 +172,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63338" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64059" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
