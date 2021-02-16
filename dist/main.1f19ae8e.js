@@ -119,25 +119,26 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   return newRequire;
 })({"main.js":[function(require,module,exports) {
 var demo = document.querySelector('#demo');
-var string = "\u4F60\u597D\uFF0C\u6211\u662F\u4E00\u4E2A\u524D\u7AEF\u65B0\u4EBA\u8BF7\u591A\u6307\u6559\n\u63A5\u4E0B\u6765\u6211\u8981\u5F00\u59CB\u8868\u6F14\u4E86\uFF01\n\u7ED9\u7F51\u9875\u589E\u52A0\u6837\u5F0F\uFF01\n\u6211\u8981\u52A0\u7684\u6837\u5F0F\u6709\u8FD9\u4E9B\uFF1A\nbody {\n    color:red;\n}\n";
+var string = "\u4F60\u597D\uFF0C\u6211\u662F\u4E00\u4E2A\u524D\u7AEF\u83DC\u9E21\u8BF7\u591A\u6307\u6559\n\u63A5\u4E0B\u6765\u6211\u8981\u5F00\u59CB\u8868\u6F14\u4E86\uFF01\n\u7ED9\u7F51\u9875\u589E\u52A0\u6837\u5F0F\uFF01\n\u6211\u8981\u52A0\u7684\u6837\u5F0F\u6709\u8FD9\u4E9B\uFF1A\nbody {\n    color:red;\n}\n";
 var string2 = '';
-var n = -1;
+var n = 0;
 
 var step = function step() {
   setTimeout(function () {
-    n = n + 1;
-
+    // 如果是回车，就不照搬
+    // 如果不是回车就照搬
     if (string[n] === '\n') {
-      // 如果 是回车就替换
       string2 += '<br>';
+    } else if (string[n] === ' ') {
+      string2 += '&nbsp;';
     } else {
-      // 如果 不是回车就照搬
       string2 += string[n];
     }
 
     demo.innerHTML = string2;
 
-    if (n < string.length) {
+    if (n < string.length - 1) {
+      n += 1;
       step();
     }
   }, 10);
@@ -172,7 +173,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64059" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49268" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
